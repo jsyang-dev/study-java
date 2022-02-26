@@ -1,4 +1,4 @@
-package logging;
+package me.study.java.logging;
 
 public class Main {
 

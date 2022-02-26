@@ -1,4 +1,4 @@
-package logging;
+package me.study.java.logging;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
