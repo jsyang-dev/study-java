@@ -1,6 +1,5 @@
 package me.study.java.java11;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -42,7 +41,6 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("")
     void file() throws IOException {
         // given
         Path tempFile = Files.createTempFile(Paths.get("target"), "demo", ".txt");
@@ -53,5 +51,17 @@ public class Java11Test {
 
         // then
         assertThat(content).isEqualTo("Sample text");
+    }
+
+    @Test
+    void collection() {
+        // given
+        List<String> sampleList = List.of("Java", "Kotlin");
+
+        // when
+        String[] sampleArray = sampleList.toArray(String[]::new);
+
+        // then
+        assertThat(sampleArray).containsExactly("Java", "Kotlin");
     }
 }
