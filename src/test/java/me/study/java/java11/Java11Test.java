@@ -1,7 +1,12 @@
 package me.study.java.java11;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,5 +39,19 @@ public class Java11Test {
 
         // then
         assertThat(threeTimes).isEqualTo("hellohellohello");
+    }
+
+    @Test
+    @DisplayName("")
+    void file() throws IOException {
+        // given
+        Path tempFile = Files.createTempFile(Paths.get("target"), "demo", ".txt");
+
+        // when
+        Path path = Files.writeString(tempFile, "Sample text");
+        String content = Files.readString(path);
+
+        // then
+        assertThat(content).isEqualTo("Sample text");
     }
 }
