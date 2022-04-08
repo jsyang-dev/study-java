@@ -13,7 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -126,5 +128,21 @@ public class Java11Test {
 
         // then
         assertThat(httpResponse.body()).isNotEmpty();
+    }
+
+    @Test
+    @DisplayName("Nest-Based Access Control")
+    void nestmate() {
+        // when
+        String name = Outer.Inner.class.getNestHost().getName();
+        boolean nestmateOf = Outer.Inner.class.isNestmateOf(Outer.class);
+        Set<String> nestMembers = Arrays.stream(Outer.Inner.class.getNestMembers())
+                .map(Class::getName)
+                .collect(Collectors.toSet());
+
+        // then
+        assertThat(name).isEqualTo("me.study.java.java11.Outer");
+        assertThat(nestmateOf).isTrue();
+        assertThat(nestMembers).contains("me.study.java.java11.Outer", "me.study.java.java11.Outer$Inner");
     }
 }
