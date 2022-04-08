@@ -1,4 +1,4 @@
-package me.study.java.java11;
+package me.study.java.java;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.*;
 public class Java11Test {
 
     @Test
-    @DisplayName("String 클래스 메서드 추가 1")
+    @DisplayName("String 클래스 추가 메서드 테스트")
     void string1() {
         // given
         String multilineString = "My name \n \n is \n Gump.";
@@ -41,7 +41,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("String 클래스 메서드 추가 2")
+    @DisplayName("String 클래스 repeat 메서드 테스트")
     void string2() {
         // given
         String string = "hello";
@@ -54,7 +54,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("File 클래스 메서드 추가")
+    @DisplayName("File 클래스 추가 메서드 테스트")
     void file() throws IOException {
         // given
         Path tempFile = Files.createTempFile(Paths.get("target"), "demo", ".txt");
@@ -68,7 +68,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("Collection 인터페이스 메서드 추가")
+    @DisplayName("Collection 인터페이스 추가 메서드 테스트")
     void collection() {
         // given
         List<String> sampleList = List.of("Java", "Kotlin");
@@ -81,7 +81,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("Predicate 인터페이스 메서드 추가")
+    @DisplayName("Predicate 인터페이스 추가 메서드 테스트")
     void predicate() {
         // given
         List<String> sampleList = List.of("Java", "\n \n", "Kotlin", " ");
@@ -96,7 +96,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("람다에서 var 사용")
+    @DisplayName("람다에서 var 사용 테스트")
     void lambda() {
         // given
         List<String> sampleList = List.of("Java", "Kotlin");
@@ -111,7 +111,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("HTTP Client")
+    @DisplayName("HTTP Client 테스트")
     void httpClient() throws IOException, InterruptedException {
         // given
         HttpClient httpClient = HttpClient.newBuilder()
@@ -131,7 +131,7 @@ public class Java11Test {
     }
 
     @Test
-    @DisplayName("Nest-Based Access Control")
+    @DisplayName("Nest-Based Access Control 테스트")
     void nestmate() {
         // when
         String name = Outer.Inner.class.getNestHost().getName();

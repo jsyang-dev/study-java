@@ -1,4 +1,4 @@
-package me.study.java.java11;
+package me.study.java.java;
 
 public class Outer {
 
