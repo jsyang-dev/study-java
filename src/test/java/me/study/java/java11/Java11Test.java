@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
@@ -63,5 +64,19 @@ public class Java11Test {
 
         // then
         assertThat(sampleArray).containsExactly("Java", "Kotlin");
+    }
+
+    @Test
+    void predicate() {
+        // given
+        List<String> sampleList = List.of("Java", "\n \n", "Kotlin", " ");
+
+        // when
+        List<String> withoutBlanks = sampleList.stream()
+                .filter(Predicate.not(String::isBlank))
+                .collect(Collectors.toList());
+
+        // then
+        assertThat(withoutBlanks).containsExactly("Java", "Kotlin");
     }
 }
