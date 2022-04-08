@@ -5,9 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -101,5 +106,25 @@ public class Java11Test {
 
         // then
         assertThat(resultString).isEqualTo("JAVA, KOTLIN");
+    }
+
+    @Test
+    @DisplayName("HTTP Client")
+    void httpClient() throws IOException, InterruptedException {
+        // given
+        HttpClient httpClient = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_2)
+                .connectTimeout(Duration.ofSeconds(20))
+                .build();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("https://api.ip.pe.kr/"))
+                .build();
+
+        // when
+        HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+        // then
+        assertThat(httpResponse.body()).isNotEmpty();
     }
 }
