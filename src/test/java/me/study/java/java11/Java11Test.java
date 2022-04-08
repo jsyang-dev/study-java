@@ -1,7 +1,9 @@
 package me.study.java.java11;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,9 +14,11 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("Java 11 신규 기능")
 public class Java11Test {
 
     @Test
+    @DisplayName("String 클래스 메서드 추가 1")
     void string1() {
         // given
         String multilineString = "My name \n \n is \n Gump.";
@@ -30,6 +34,7 @@ public class Java11Test {
     }
 
     @Test
+    @DisplayName("String 클래스 메서드 추가 2")
     void string2() {
         // given
         String string = "hello";
@@ -42,6 +47,7 @@ public class Java11Test {
     }
 
     @Test
+    @DisplayName("File 클래스 메서드 추가")
     void file() throws IOException {
         // given
         Path tempFile = Files.createTempFile(Paths.get("target"), "demo", ".txt");
@@ -55,6 +61,7 @@ public class Java11Test {
     }
 
     @Test
+    @DisplayName("Collection 인터페이스 메서드 추가")
     void collection() {
         // given
         List<String> sampleList = List.of("Java", "Kotlin");
@@ -67,6 +74,7 @@ public class Java11Test {
     }
 
     @Test
+    @DisplayName("Predicate 인터페이스 메서드 추가")
     void predicate() {
         // given
         List<String> sampleList = List.of("Java", "\n \n", "Kotlin", " ");
@@ -78,5 +86,20 @@ public class Java11Test {
 
         // then
         assertThat(withoutBlanks).containsExactly("Java", "Kotlin");
+    }
+
+    @Test
+    @DisplayName("람다에서 var 사용")
+    void lambda() {
+        // given
+        List<String> sampleList = List.of("Java", "Kotlin");
+
+        // when
+        String resultString = sampleList.stream()
+                .map((@Nonnull var x) -> x.toUpperCase())
+                .collect(Collectors.joining(", "));
+
+        // then
+        assertThat(resultString).isEqualTo("JAVA, KOTLIN");
     }
 }
